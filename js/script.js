@@ -20,20 +20,37 @@
 
     var header = document.createElement('header');
     var title = document.createElement('h1');
-    var nav = document.createElement('nav');
+    // commenting out.. originally from James approach var nav = document.createElement('nav');
+    var navList = document.createElement('ul');
+    var li1 = document.createElement('li');
+    var li2 = document.createElement('li');
 
     // use innerHTML method to inject actual HTML content into the h1 and nav sections we created
     title.innerHTML = 'HighOnCoding';
-    // James used this method to inject the ul code directly into the nav variable.. It works, but now I'm 
+    li1.innerHTML = 'Home';
+    li2.innerHTML = 'Categories';
+    // James used this method below to inject the ul code directly into the nav variable.. It works, but now I'm 
     // having trouble styling the individual list items .. can't find a way to target them with code.. 
     // commenting this method out for now  
     // nav.innerHTML = '<ul><li>Home</li><li>Categories</li></ul>';
 
     // will add styling to header and nav below here
+    // STRONG suspicion I'm doing this wrong having to verbosely write everything out like this
+    // but the exercise said we couldn't make css stylesheet .. everything had to be done through JS
+
     header.style.backgroundColor = '#57a9f7';
+    header.style.color = 'white';
+    header.style.fontFamily = 'Arial';
     title.style.display = 'inline-block';
-    nav.style.display = 'inline-block';
-    nav.style.listStyleType = 'none';
+    title.style.fontSize = '28px'
+    title.style.marginLeft = '20px'
+    navList.style.display = 'inline-block';
+    li1.style.display = 'inline';
+    li2.style.display = 'inline';
+    li1.style.marginLeft = '55px';
+    li2.style.marginLeft = '45px';
+    // commenting out .. this was used in James' approach nav.style.display = 'inline-block';
+    
 
     // create main, hero, and posts elements for the main/remaining area of page
     var main = document.createElement('main');
@@ -44,6 +61,8 @@
     // create variable to store the paragraph section of the hero section
     var heroPara = document.createElement('p');
     // set the content of newly created h2 heading element
+    // I wanted to change course by using createTextNode method instead of innerHTML. I'm seeing in various places during searches
+    // that TextNode is maybe prefered over innerHTML. But for simplicity will stick with the approach I started with
     heroH2.innerHTML = "Curse of the Current Reviews";
     // set content of the paragraph section of the hero section
     heroPara.innerHTML = "When you want to buy any application from the Apple iTunes store you have more choices than you can handle. Most of the users scroll past the application description completely avoiding it like ads displayed on the right column of your webpage. Their choice is dependent on three important factors price, screenshot and reviews.";
@@ -81,7 +100,11 @@
     // once our header is in place we can now start adding the h1 div and nav elements to the newly created header section
     // via same appendChild method
     header.appendChild(title);
-    header.appendChild(nav);
+    header.appendChild(navList);
+    navList.appendChild(li1);
+    navList.appendChild(li2);
+
+    
     // append children to container wrapper to start moving the newly created elements in
     container.appendChild(main);
     main.appendChild(hero);
