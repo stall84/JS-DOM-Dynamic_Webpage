@@ -10,7 +10,7 @@
 // the closing </html>. This way the browser loads all the html DOM content before runnig the JS
 //*********************************************************************************************************/
 
-//document.addEventListener('DOMContentLoaded', function() {
+// -> document.addEventListener('DOMContentLoaded', function() {
 
 
     // create variable to grab container div (that's already present) in html body
@@ -20,7 +20,7 @@
 
     var header = document.createElement('header');
     var title = document.createElement('h1');
-    // commenting out.. originally from James approach var nav = document.createElement('nav');
+    // commenting out.. originally from James approach -> var nav = document.createElement('nav');
     var navList = document.createElement('ul');
     var li1 = document.createElement('li');
     var li2 = document.createElement('li');
@@ -32,7 +32,7 @@
     // James used this method below to inject the ul code directly into the nav variable.. It works, but now I'm 
     // having trouble styling the individual list items .. can't find a way to target them with code.. 
     // commenting this method out for now  
-    // nav.innerHTML = '<ul><li>Home</li><li>Categories</li></ul>';
+    // -> nav.innerHTML = '<ul><li>Home</li><li>Categories</li></ul>';
 
     // will add styling to header and nav below here
     // STRONG suspicion I'm doing this wrong having to verbosely write everything out like this
@@ -61,21 +61,46 @@
     // create variable to store the paragraph section of the hero section
     var heroPara = document.createElement('p');
     // set the content of newly created h2 heading element
-    // I wanted to change course by using createTextNode method instead of innerHTML. I'm seeing in various places during searches
-    // that TextNode is maybe prefered over innerHTML. But for simplicity will stick with the approach I started with
-    heroH2.innerHTML = "Curse of the Current Reviews";
+    // changing method to creating textnodes instead of using innerHTML
+    var heroH1 = document.createTextNode("Curse of the Current Reviews");
     // set content of the paragraph section of the hero section
-    heroPara.innerHTML = "When you want to buy any application from the Apple iTunes store you have more choices than you can handle. Most of the users scroll past the application description completely avoiding it like ads displayed on the right column of your webpage. Their choice is dependent on three important factors price, screenshot and reviews.";
+    var heroP1 = document.createTextNode("When you want to buy any application from the Apple iTunes store you have more choices than you can handle. Most of the users scroll past the application description completely avoiding it like ads displayed on the right column of your webpage. Their choice is dependent on three important factors price, screenshot and reviews.");
     
+    // styling for the hero section
+    main.style.display = 'flex';
+    main.style.fontFamily = 'Arial';
+    main.style.flexDirection = 'column';
+    main.style.margin = '20px 25px 20px 25px';
+    hero.style.backgroundColor = '#dddee0';
+    hero.style.padding = '5px 18px 5px 18px';
+    
+
     // Build out all the components of the 1st posts section
     var posts1 = document.createElement('div');
     var postsH3 = document.createElement('h3');
     var pPara1 = document.createElement('p');
     var p1Footer = document.createElement('footer');
+    var footer1Ul = document.createElement('ul');
+    var footer1li1 = document.createElement('li');
+    var footer1li2 = document.createElement('li');
     // Fill out all the content of the 1st posts section
-    postsH3.innerHTML = "Hello WatchKit"
-    pPara1.innerHTML = "Last month Apple released the anticipated Watchkit Framework for developers in the form of iOS 8.2 beta SDK release. The WatchKit framework enable the developers to create Apple Watch applications. In this article we are going to focus on the basics of getting started with the WatchKit framework and developing apps for the Apple Watch.";
-    p1Footer.innerHTML = "<ul><li>12 comments</li><li>124 likes</li></ul>";
+    var postH1 = document.createTextNode("Hello WatchKit");
+    var postPara1 = document.createTextNode("Last month Apple released the anticipated Watchkit Framework for developers in the form of iOS 8.2 beta SDK release. The WatchKit framework enable the developers to create Apple Watch applications. In this article we are going to focus on the basics of getting started with the WatchKit framework and developing apps for the Apple Watch.");
+    // commenting this portion learned from James' attempt because I don't know how to target it to style it. Wondering if this method could be used though 
+    // because it would save a ton of time and variables -> p1Footer.innerHTML = "<ul><li>12 comments</li><li>124 likes</li></ul>";
+    var ftr1Comts = document.createTextNode('12 comments');
+    var ftr1likes = document.createTextNode('124 likes');
+
+    // styling for 1st posts section
+    postsH3.style.color = '#4586cb'
+    footer1Ul.style.listStyle = 'none';
+    footer1Ul.style.color = 'white';
+    footer1Ul.style.height = '26px';
+    footer1Ul.style.paddingTop = '7px';
+    footer1Ul.style.backgroundColor = '#f0902d';
+    footer1li1.style.display = 'inline';
+    footer1li2.style.display = 'inline';
+    footer1li1.style.paddingRight = '20px';
 
     // Build out all the components of the 2nd posts section in same manner
     var posts2 = document.createElement('div');
@@ -108,13 +133,14 @@
     // append children to container wrapper to start moving the newly created elements in
     container.appendChild(main);
     main.appendChild(hero);
-    hero.appendChild(heroH2);
-    hero.appendChild(heroPara);
+    hero.appendChild(heroH2).appendChild(heroH1);
+    hero.appendChild(heroPara).appendChild(heroP1);
 
     main.appendChild(posts1);
-    posts1.appendChild(postsH3);
-    posts1.appendChild(pPara1);
-    posts1.appendChild(p1Footer);
+    posts1.appendChild(postsH3).appendChild(postH1);
+    posts1.appendChild(pPara1).appendChild(postPara1);
+    posts1.appendChild(footer1Ul).appendChild(footer1li1).appendChild(ftr1Comts);
+    footer1Ul.appendChild(footer1li2).appendChild(ftr1likes);
 
     main.appendChild(posts2);
     posts2.appendChild(posts2H3);
